@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="CropImage.CropImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="800">
+    <Canvas x:Name="canvas" 
+            Cursor="Cross"
+            PreviewMouseLeftButtonDown="canvas_PreviewMouseLeftButtonDown"
+            MouseLeftButtonDown="canvas_MouseLeftButtonDown"
+            MouseLeftButtonUp="canvas_MouseLeftButtonUp"
+            MouseMove="canvas_MouseMove" 
+            Background="Transparent">
+        <Image x:Name="image" 
+               Stretch="Fill" 
+               Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+               Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}" />
+        <Image x:Name="overlay" 
+               Stretch="Fill" 
+               Visibility="Hidden"
+               Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}"
+               Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+            <Image.Clip>
+                <RectangleGeometry Rect="0,0,0,0"/>
+            </Image.Clip>
+        </Image>
+        <Border x:Name="selection" 
+                Canvas.Left="0" 
+                Canvas.Top="0" 
+                BorderThickness="4" 
+                IsMouseDirectlyOverChanged="selection_IsMouseDirectlyOverChanged"
+                MouseEnter="selection_MouseEnter"
+                MouseMove="selection_MouseMove"
+                MouseLeave="selection_MouseLeave"
+                MouseLeftButtonDown="selection_MouseLeftButtonDown"
+                MouseLeftButtonUp="selection_MouseLeftButtonUp">
+            <Border.BorderBrush>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle StrokeDashArray="3.0 6.0"
+                           Stroke="Black"
+                           StrokeThickness="1.5"
+                           Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                           Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.BorderBrush>
+            <Canvas x:Name="croppedArea"
+                    Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    MouseEnter="croppedArea_MouseEnter"
+                    MouseLeave="croppedArea_MouseLeave"
+                    MouseMove="croppedArea_MouseMove"
+                    MouseLeftButtonDown="croppedArea_MouseLeftButtonDown">
+                    
+            </Canvas>
+        </Border>    
+    </Canvas>
+</UserControl>

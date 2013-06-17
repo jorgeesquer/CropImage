@@ -1,0 +1,28 @@
+﻿<Window x:Class="CropImageApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ci="clr-namespace:CropImage;assembly=CropImage"
+        Title="CropImage for WPF" Height="500" Width="886">
+    <Grid HorizontalAlignment="Right" Width="878" Height="469" VerticalAlignment="Bottom">
+        <GroupBox Header="Crop Image" Margin="0,0,443,57" Height="400" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="420">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <ci:CropImage x:Name="cropImage" SelectedAreaChanged="cropImage_SelectedAreaChanged" Margin="5,5,12,13" />
+            </ScrollViewer>
+        </GroupBox>
+        <GroupBox Header="Preview" Margin="0,0,10,57" HorizontalAlignment="Right" Width="420" Height="400" VerticalAlignment="Bottom">
+            <Grid>
+                <Image x:Name="preview" Margin="87,41,85,101" />
+                <Label Margin="7,328,369,16">Top</Label>
+                <TextBox x:Name="top" Margin="35,326,322,18" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+                <Label Margin="103,328,273,16">Left</Label>
+                <TextBox x:Name="left" Margin="131,326,225,18" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+                <Label Margin="198,328,170,16">Right</Label>
+                <TextBox x:Name="right" Margin="234,326,123,18" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+                <Label Margin="300,328,55,16">Bottom</Label>
+                <TextBox x:Name="bottom" Margin="347,326,10,18" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+            </Grid>
+        </GroupBox>
+        <Button x:Name="open" Height="25" Click="open_Click" Margin="0,0,112,24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="82">Open</Button>
+        <Button x:Name="crop" Height="25" Click="crop_Click" Margin="0,0,10,24" HorizontalAlignment="Right" Width="82" VerticalAlignment="Bottom">Crop</Button>
+    </Grid>
+</Window>
