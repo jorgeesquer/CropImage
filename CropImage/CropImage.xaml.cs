@@ -139,9 +139,10 @@ namespace CropImage
             };
 
             var dir = Path.GetDirectoryName(path);
-            var newPath = Path.Combine(dir, string.Concat("cropped_", DateTime.Now.Ticks.ToString(), Path.GetExtension(path)));
+            //var newPath = Path.Combine(dir, "<guid>.<ext>");
+            var newPath = dir + "\\<guid>.<ext>";
 
-            ImageBuilder.Current.Build(path, newPath, settings);
+            newPath = ImageBuilder.Current.Build(path, newPath, settings, true, false);
             System.Diagnostics.Process.Start(newPath);
         }
 
